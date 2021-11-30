@@ -102,6 +102,31 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  var results = [];
+
+  // base case
+
+  if (x === undefined || y === undefined) {
+    return results;
+  }
+
+  if (1 === Math.abs(x - y)) {
+    return results;
+  }
+
+  // recursive case
+
+  if (x > y) {
+    results = results.concat(x - 1, range(x - 1, y));
+  //    range(x - 1, y);
+  }
+
+  if (x < y) {
+    results = results.concat(x + 1, range(x + 1, y));
+  }
+
+
+  return results;
 };
 
 // 7. Compute the exponent of a number.
