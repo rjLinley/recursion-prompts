@@ -135,6 +135,27 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+
+  if (exp < 0) {
+    // base case
+    if (exp === 0) {
+      return 1;
+    }
+
+    // recursive case
+
+    return Number(((1 / base) * exponent(base, exp + 1)).toFixed(5));
+
+  } else {
+    // base case
+    if (exp === 0) {
+      return 1;
+    }
+    // recursive case
+    // base times itself exp decrements
+
+    return base * exponent(base, exp - 1);
+  }
 };
 
 // 8. Determine if a number is a power of two.
@@ -142,14 +163,65 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+
+  // base case
+
+  //number divided by two is 1  or is not and
+
+  if (n === 1) {
+    return true;
+  }
+  if (Number.isInteger(n) === false || n === 0) {
+    return false;
+  }
+
+  // recursive case
+
+  return powerOfTwo(n/2)
 };
+
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  var reversed = '';
+  var position = string.length - 1
+
+  if (position === - 1) {
+    return reversed;
+  }
+
+
+  // for each letter of a string??
+
+  return reversed += string[position] + reverse(string.substring(0, position));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+
+  var joined = string.split(' ').join(' ');
+  var rightToLeft = 0;
+  var leftToRight = joined.length - 1;
+
+  // base cases?
+
+  // if right to left !== left to right, return false
+
+  if (joined.length <= 1) {
+    return true;
+  }
+
+  if (joined[rightToLeft].toLowerCase() !== joined[leftToRight].toLowerCase()) {
+    return false;
+  }
+
+
+  // recursive case
+
+    return palindrome(joined.substring(rightToLeft + 1, leftToRight));
+
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
